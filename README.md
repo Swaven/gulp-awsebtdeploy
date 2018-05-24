@@ -1,29 +1,31 @@
-gulp-beanstalk-deploy
+gulp-awsebtdeploy
 =====
-[![Build Status](https://travis-ci.org/a0ly/gulp-beanstalk-deploy.svg?branch=master)](https://travis-ci.org/a0ly/gulp-beanstalk-deploy)
-[![npm version](https://badge.fury.io/js/gulp-beanstalk-deploy.svg)](https://badge.fury.io/js/gulp-beanstalk-deploy)
-[![Downloads](https://img.shields.io/npm/dt/gulp-beanstalk-deploy.svg)](https://www.npmjs.com/package/gulp-beanstalk-deploy)
-[![Dependency Status](https://david-dm.org/a0ly/gulp-beanstalk-deploy.svg)](https://david-dm.org/a0ly/gulp-beanstalk-deploy)
 
 > A gulp plugin for deployment your application to AWS Elastic Beanstalk
 
 This plugin helps you to integrate your deployment task on the Amazon AWS Elasticbeanstalk service into gulp. Your deployment job will be more mainatainable and efficient, so that you can increase productivity.
 
+Forked from https://github.com/a0ly/gulp-beanstalk-deploy.
+
 ## Getting Started
 
 You can install plugin by this command:
 ```shell
-npm install gulp-beanstalk-deploy
+npm install gulp-awsebtdeploy
 ```
 
 ## Overview
 ```javascript
-gulp.task('deploy', function(cb) {
-  eb({
+const eb = require('gulp-awsebtdeploy')
+
+gulp.task('deploy', function() {
+  return eb({
     // options here
-  }, cb)
+  })
 });
 ```
+
+The task returns a promise that resolves when the target environment's status becomes ***Ready***.
 
 ### Options
 
@@ -56,7 +58,7 @@ Your application name. It must be provided.
 ##### environmentName *
 * Type: `string`
 
-Your application enviroment name. It must be provided.
+Your application environment name. It must be provided.
 
 ##### versionLabel
 * Type: `string`
@@ -97,12 +99,19 @@ Interval time to check deploying status. (sec)
 
 archive file path to upload. It must exists in your local file system, which means the archive file must be prepared before deployment task.
 
+
+##### proxy
+* Type: `string`
+* Default: none
+
+Optional proxy url to use for requests.
+
 ## Usage Example
 ``` javascript
 var gulp = require('gulp');
-var eb = require('gulp-beanstalk-deploy');
+var eb = require('gulp-awsebtdeploy');
 
-gulp.task('deploy', function(cb) {
+gulp.task('deploy', function() {
   eb({
     accessKeyId: 'Your AWS accessKeyId', // optional
     secretAccessKey: 'Your AWS secretAccessKey', // optional
@@ -112,7 +121,7 @@ gulp.task('deploy', function(cb) {
     versionLabel: '1.0.0',
     sourceBundle: './archive.zip',
     description: 'description here'
-  }, cb);
+  });
 });
 ```
 
