@@ -30,7 +30,8 @@
       "name": "Seungjae Lee",
       "email": "seungjae@dable.io",
       "url": "http://a0ly.github.io/"
-    },{
+    },
+    {
       "name": "Swaven",
       "url": "https://github.com/Swaven"
     }
@@ -42,10 +43,10 @@
   "homepage": "https://github.com/Swaven/gulp-awsebtdeploy#readme",
   "dependencies": {
     "aws-sdk": "^2.245.1",
-    "chai": "^4.1.0",
+    "chai": "4.5",
     "gulp-util": "^3.0.7",
-    "lodash": "^4.13.1",
-    "mocha": "4.0.1",
+    "lodash": "^4.17.21",
+    "mocha": "^11.7.2",
     "q": "^1.4.1"
   }
 }
