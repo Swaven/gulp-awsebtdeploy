@@ -1,9 +1,8 @@
 
 'use strict';
 
-var setup = require('../lib/setup')
-,   _ = require('lodash')
-,   expect = require('chai').expect;
+const setup = require('../lib/setup'),
+  expect = require('chai').expect;
 
 describe('Initial option validation check', function() {
   var opts = {
@@ -15,7 +14,8 @@ describe('Initial option validation check', function() {
 
   it('Should return error param missing `region`', function() {
     try {
-      expect(setup(_.omit(opts,['region']))).to.be.empty;
+      const input = {...opts, region: undefined}
+      expect(setup(input)).to.be.empty;
     } catch(e) {
       expect(e.toString()).to.contain('Param missing [region]');
     }
@@ -23,7 +23,8 @@ describe('Initial option validation check', function() {
 
   it('Should return error param missing `applicationName`', function() {
     try {
-      expect(setup(_.omit(opts,['applicationName']))).to.be.empty;
+      const input = {...opts, applicationName: undefined}
+      expect(setup(input)).to.be.empty;
     } catch(e) {
       expect(e.toString()).to.contain('Param missing [applicationName]');
     }
@@ -31,7 +32,8 @@ describe('Initial option validation check', function() {
 
   it('Should return error param missing `environmentName`', function() {
     try {
-      expect(setup(_.omit(opts,['environmentName']))).to.be.empty;
+      const input = {...opts, environmentName: undefined}
+      expect(setup(input)).to.be.empty;
     } catch(e) {
       expect(e.toString()).to.contain('Param missing [environmentName]');
     }
@@ -39,7 +41,8 @@ describe('Initial option validation check', function() {
 
   it('Should return error param missing `sourceBundle`', function() {
     try {
-      expect(setup(_.omit(opts,['sourceBundle']))).to.be.empty;
+      const input = {...opts, sourceBundle: undefined}
+      expect(setup(input)).to.be.empty;
     } catch(e) {
       expect(e.toString()).to.contain('Param missing [sourceBundle]');
     }

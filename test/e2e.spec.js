@@ -12,5 +12,5 @@ describe('e2e', () => {
         bucket: 'elasticbeanstalk-eu-west-1-443798107548'
       },
     })
-  })
+  }).timeout(45e3)
 })
