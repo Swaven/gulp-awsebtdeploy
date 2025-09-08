@@ -6,32 +6,28 @@ var setup  = require('./lib/setup')
 ,   updateEnvironment = aws.updateEnvironment
 ,   waitdeploy = aws.waitdeploy;
 
-module.exports = function(opts) {
+module.exports = async function(opts) {
 
-  var sets = setup(opts);
+  try {
+  var sets = await setup(opts);
+  await upload(sets);
 
-  return upload(sets)
-  .then(function(){
-    return createApplicationVersion(sets)
-  })
-  .then(function(version) {
-    return updateEnvironment(sets, version)
-  })
-  .then(function(result) {
-    if(opts.waitForDeploy == null)
-      opts.waitForDeploy = true;
+  const version = await createApplicationVersion(sets);
 
-    if(opts.waitForDeploy) {
-      return waitdeploy(sets, opts.checkIntervalSec || 2000)
-    } else {
-      return result;
-    }
-  })
-  .then(function(result){
-    return Promise.resolve(result)
-  })
-  .catch(function(error){
-    return Promise.reject(error)
-  });
+  updateResult = await updateEnvironment(sets, version);
+
+  if(opts.waitForDeploy == null)
+    opts.waitForDeploy = true;
+
+  if (!opts.waitForDeploy)
+    return updateResult;
+
+  const results = await waitdeploy(sets, opts.checkIntervalSec || 2000)
+  return results;
+}
+catch(ex){
+  console.error(ex);
+  throw ex;
+}
 
 }
