@@ -9,25 +9,25 @@ var setup  = require('./lib/setup')
 module.exports = async function(opts) {
 
   try {
-  var sets = await setup(opts);
-  await upload(sets);
+    var sets = await setup(opts);
+    await upload(sets);
 
-  const version = await createApplicationVersion(sets);
+    const version = await createApplicationVersion(sets);
 
-  updateResult = await updateEnvironment(sets, version);
+    updateResult = await updateEnvironment(sets, version);
 
-  if(opts.waitForDeploy == null)
-    opts.waitForDeploy = true;
+    if (opts.waitForDeploy == null)
+      opts.waitForDeploy = true;
 
-  if (!opts.waitForDeploy)
-    return updateResult;
+    if (!opts.waitForDeploy)
+      return updateResult;
 
-  const results = await waitdeploy(sets, opts.checkIntervalSec || 2000)
-  return results;
-}
-catch(ex){
-  console.error(ex);
-  throw ex;
-}
+    const results = await waitdeploy(sets, opts.checkIntervalSec || 2000)
+    return results;
+  }
+  catch (ex) {
+    console.error(ex);
+    throw ex;
+  }
 
 }

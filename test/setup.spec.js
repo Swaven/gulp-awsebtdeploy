@@ -16,7 +16,7 @@ describe('Initial option validation check', function() {
     try {
       const input = {...opts, region: undefined}
       expect(setup(input)).to.be.empty;
-    } catch(e) {
+    } catch (e) {
       expect(e.toString()).to.contain('Param missing [region]');
     }
   });
@@ -25,7 +25,7 @@ describe('Initial option validation check', function() {
     try {
       const input = {...opts, applicationName: undefined}
       expect(setup(input)).to.be.empty;
-    } catch(e) {
+    } catch (e) {
       expect(e.toString()).to.contain('Param missing [applicationName]');
     }
   });
@@ -34,7 +34,7 @@ describe('Initial option validation check', function() {
     try {
       const input = {...opts, environmentName: undefined}
       expect(setup(input)).to.be.empty;
-    } catch(e) {
+    } catch (e) {
       expect(e.toString()).to.contain('Param missing [environmentName]');
     }
   });
@@ -43,7 +43,7 @@ describe('Initial option validation check', function() {
     try {
       const input = {...opts, sourceBundle: undefined}
       expect(setup(input)).to.be.empty;
-    } catch(e) {
+    } catch (e) {
       expect(e.toString()).to.contain('Param missing [sourceBundle]');
     }
   });
@@ -51,7 +51,7 @@ describe('Initial option validation check', function() {
   it('Should return error invalid sourceBundle', function() {
     try {
       expect(setup(opts)).to.be.empty;
-    } catch(e) {
+    } catch (e) {
       expect(e.toString()).to.contain('Invalid sourceBundle');
     }
   });
