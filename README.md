@@ -18,11 +18,10 @@ npm install gulp-awsebtdeploy
 ```javascript
 const eb = require('gulp-awsebtdeploy')
 
-gulp.task('deploy', function() {
-  return eb({
-    // options here
-  })
-});
+// returns a promise
+return eb({
+  // options here
+})
 ```
 
 The task returns a promise that resolves when the target environment's status becomes ***Ready***.
@@ -108,21 +107,19 @@ Optional proxy url to use for requests.
 
 ## Usage Example
 ``` javascript
-var gulp = require('gulp');
-var eb = require('gulp-awsebtdeploy');
+const eb = require('gulp-awsebtdeploy');
 
-gulp.task('deploy', function() {
-  eb({
-    accessKeyId: 'Your AWS accessKeyId', // optional
-    secretAccessKey: 'Your AWS secretAccessKey', // optional
-    region: 'us-west-1', // required
-    applicationName:'gulp-beanstalk-deploy',
-    environmentName: 'gulp-beanstalk-deploy-env',
-    versionLabel: '1.0.0',
-    sourceBundle: './archive.zip',
-    description: 'description here'
-  });
+eb({
+  accessKeyId: 'Your AWS accessKeyId', // optional
+  secretAccessKey: 'Your AWS secretAccessKey', // optional
+  region: 'us-west-1', // required
+  applicationName:'gulp-beanstalk-deploy',
+  environmentName: 'gulp-beanstalk-deploy-env',
+  versionLabel: '1.0.0',
+  sourceBundle: './archive.zip',
+  description: 'description here'
 });
+
 ```
 
 ## License
